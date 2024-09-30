@@ -1,4 +1,10 @@
 {
+  
+"browser": {
+    "fs": false,
+    "os": false,
+    "path": false
+  },
   "name": "ecomerce",
   "version": "0.1.0",
   "private": true,
@@ -26,4 +32,5 @@
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
   }
+  
 }
