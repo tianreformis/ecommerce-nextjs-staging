@@ -1,6 +1,5 @@
 {
-  
-"browser": {
+  "browser": {
     "fs": false,
     "os": false,
     "path": false
@@ -16,10 +15,12 @@
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
     "firebase": "^10.13.2",
     "next": "14.2.13",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "sass": "^1.79.4"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
@@ -32,5 +33,4 @@
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
   }
-  
 }
