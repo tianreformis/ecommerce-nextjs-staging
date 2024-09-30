@@ -20,13 +20,18 @@ export async function retrieveDataById(collectionName: string, id: string) {
     return data;
 }
 
-export async function signUp(userData: {
-    email: string,
-    fullname: string,
-    password: string,
-    phone: string,
-    role?: string,
-}, callback: Function) {
+export async function signUp(
+    userData:
+        {
+            email: string,
+            fullname: string,
+            password: string,
+            phone: string,
+            role?: string,
+        },
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
+    callback: Function,
+) {
     const q = query(
         collection(firestore, 'users'),
         where('email', '==', userData.email),
