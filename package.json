@@ -17,6 +17,8 @@
     "bcryptjs": "^2.4.3",
     "child-process": "^1.0.2",
     "firebase": "^10.7.0",
+    "headlessui": "^0.0.0",
+    "heroicons": "^2.1.5",
     "mock-aws-s3": "^4.0.2",
     "net": "^1.0.2",
     "next": "14.2.13",

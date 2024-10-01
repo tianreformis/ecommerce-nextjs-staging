@@ -33,7 +33,7 @@ const LoginView = () => {
         }
         catch (error) {
             setIsLoading(false);
-            setError("Email and Passwrod Incoocredt");
+            setError("Email dan Password Salah...");
         }
     };
 
