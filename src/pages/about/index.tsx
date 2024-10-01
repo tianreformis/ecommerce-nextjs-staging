@@ -21,15 +21,20 @@ export default function HomeView() {
   
         <!-- nav - start --> */}
                     <nav className="hidden gap-12 lg:flex">
-                        <Link href="#" className={`text-lg font-semibold 
+                        <Link href="/" className={`text-lg font-semibold transition duration-100 hover:text-indigo-500
                         ${pathname === '/'
-                                ? " text-indigo-500"
+                                ? " text-indigo-700"
                                 : "text-gray-600"}`}>
                             Home
                         </Link>
-                        <Link href="#" className="text-lg font-semibold text-gray-600 transition duration-100 hover:text-indigo-500 active:text-indigo-700">Features</Link>
-                        <Link href="#" className="text-lg font-semibold text-gray-600 transition duration-100 hover:text-indigo-500 active:text-indigo-700">Pricing</Link>
-                        <Link href="/about" className="text-lg font-semibold text-gray-600 transition duration-100 hover:text-indigo-500 active:text-indigo-700">About</Link>
+                        <Link href="/about" className={`text-lg font-semibold transition duration-100 hover:text-indigo-500
+                        ${pathname === '/about'
+                                ? " text-indigo-700"
+                                : "text-gray-600"}`}>
+                            Home
+                        </Link>
+
+                        
                     </nav>
                     {/* <!-- nav - end -->
   
