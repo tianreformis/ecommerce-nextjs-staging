@@ -1,10 +1,10 @@
 import { getFirestore, collection, getDoc, doc, getDocs, where, query, addDoc } from 'firebase/firestore'
 import app from './init'
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcryptjs';
 
 const firestore = getFirestore(app);
 
-export async function retrieveData(collectionName: string) {
+export  async function retrieveData(collectionName: string) {
     const snapshot = await getDocs(collection(firestore, collectionName));
     const data = snapshot.docs.map((doc) => ({
         id: doc.id,
@@ -20,7 +20,7 @@ export async function retrieveDataById(collectionName: string, id: string) {
     return data;
 }
 
-export async function signUp(
+export default async function signUp(
     userData:
         {
             email: string,

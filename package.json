@@ -14,16 +14,20 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
+    "child-process": "^1.0.2",
     "firebase": "^10.7.0",
+    "mock-aws-s3": "^4.0.2",
+    "net": "^1.0.2",
     "next": "14.2.13",
     "react": "^18",
     "react-dom": "^18",
-    "sass": "^1.79.4"
+    "sass": "^1.79.4",
+    "tls": "^0.0.1"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
+    "@types/bcryptjs": "^2.4.6",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
