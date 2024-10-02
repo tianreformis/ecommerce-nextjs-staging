@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -10,7 +8,7 @@ const LoginView = () => {
 
 
     const { push, query } = useRouter();
-    const callbackUrl: any = query.callbackUrl || '/auth/register';
+    const callbackUrl: any = query.callbackUrl || '/';
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         setIsLoading(true);
@@ -21,10 +19,10 @@ const LoginView = () => {
                 redirect: false,
                 email: form.email.value,
                 password: form.password.value,
-                callbackUrl
+                callbackUrl,
             })
 
-            if (res?.error) {
+            if (!res?.error) {
                 setIsLoading(false);
                 form.reset();
                 push(callbackUrl);
@@ -35,7 +33,7 @@ const LoginView = () => {
         }
         catch (error) {
             setIsLoading(false);
-            setError("Email dan Password Salah...");
+            setError("User tidak ada silahkan mendaftar...");
         }
     };
 
@@ -47,7 +45,9 @@ const LoginView = () => {
                 <div className="mx-auto max-w-screen-2xl px-4 md:px-8">
                     <h2 className="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-8 lg:text-3xl">Login</h2>
 
-                    <form className="mx-auto max-w-lg rounded-lg border" onSubmit={handleSubmit}>
+                    <form className="mx-auto max-w-lg rounded-lg border"
+                        onSubmit={handleSubmit}
+                    >
                         <div className="flex flex-col gap-4 p-4 md:p-8">
                             <div>
                                 <label htmlFor="email" className="mb-2 inline-block text-sm text-gray-800 sm:text-base">Email</label>
