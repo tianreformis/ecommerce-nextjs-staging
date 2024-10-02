@@ -1,14 +1,15 @@
-import Link from 'next/link'
-import Image from 'next/image'
-import { usePathname } from 'next/navigation'
 import { NavbarHome } from '@/components/ui/navbar';
 import { ContentHome } from '@/components/ui/content';
-
+import Head from 'next/head';
 export default function HomeView() {
-    const pathname = usePathname();
+    
 
     return (
         <>
+        <Head>
+            <title>Tian Store</title>
+            <link rel="icon" href="/favicon.ico" />
+        </Head>
         <NavbarHome />
         <ContentHome />
         </>
