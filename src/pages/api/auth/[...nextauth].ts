@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { signIn } from "@/lib/firebase/service";
+import { LoginWithGoogle, signIn } from "@/lib/firebase/service";
 import { compare } from "bcryptjs";
 import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
@@ -38,9 +38,9 @@ const authOptions: NextAuthOptions = {
             }
         }),
         GoogleProvider({
-            clientId: process.env.GOOGLE_CLIENT_ID || '',
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET || '',
-            
+            clientId: process.env.GOOGLE_OAUTH_CLIENT_ID || '',
+            clientSecret: process.env.GOOGLE_OAUTH_CLIENT_SECRET || '',
+
         }),
     ],
     callbacks: {
@@ -52,6 +52,25 @@ const authOptions: NextAuthOptions = {
                 token.phone = user.phone;
                 token.role = user.role;
             }
+
+            if (account?.provider === "google") {
+                const data = {
+                    fullname: user.name,
+                    email: user.email,
+                    type: 'google',
+                };
+
+                await LoginWithGoogle(
+                    data,
+                    (data: any) => {
+                        token.email = data.email;;
+                        token.fullname = data.fullname;
+                        token.role = data.role;
+                    }
+                )
+            }
+
+
             return token;
         },
         async session({ session, token }: any) {
