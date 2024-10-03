@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import Button from "@/components/ui/button";
+import Input from "@/components/ui/input";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -31,7 +35,7 @@ const LoginView = () => {
                 setError("Email dan Password Salah...");
             }
         }
-        catch (error) {
+        catch (errorregi) {
             setIsLoading(false);
             setError("User tidak ada silahkan mendaftar...");
         }
@@ -49,37 +53,27 @@ const LoginView = () => {
                         onSubmit={handleSubmit}
                     >
                         <div className="flex flex-col gap-4 p-4 md:p-8">
-                            <div>
-                                <label htmlFor="email" className="mb-2 inline-block text-sm text-gray-800 sm:text-base">Email</label>
-                                <input className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
-                                    name="email"
-                                    id="email"
-                                    type="email"
-                                    placeholder="Input Email"
-                                />
-                            </div>
+                            <Input
+                                label="Email"
+                                name="email"
+                                type="email"
+                                placeholder="Masukkan Email..."
+                            />
+                            <Input
+                                label="Password"
+                                name="password"
+                                type="password"
+                                placeholder="Masukkan Password..."
+                            />
 
-                            <div>
-                                <label htmlFor="password" className="mb-2 inline-block text-sm text-gray-800 sm:text-base">Password</label>
-                                <input className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
-                                    type="password"
-                                    id="password"
-                                    placeholder="Masukkan Password..."
-                                    name="password"
-                                />
-                            </div>
+                            <Button type="submit">{isLoading ? "Loading..." : "Login"} </Button>
 
-                            <button className="block rounded-lg bg-gray-800 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-gray-300 transition duration-100 hover:bg-gray-700 focus-visible:ring active:bg-gray-600 md:text-base"
-                                type="submit"
-
-                            >{isLoading ? "Loading..." : "Log in"}</button>
-
-                            <button className="block rounded-lg bg-blue-800 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-gray-300 transition duration-100 hover:bg-blue-700 focus-visible:ring active:bg-gray-600 md:text-base"
-                                onClick={() => signIn('google', { callbackUrl, redirect: false })}
-                            >
+                            <Button
+                                type="button"
+                                onClick={() => signIn('google', { callbackUrl, redirect: false })}>
                                 {isLoading ? "Loading..." : "Login With Google"}
+                            </Button>
 
-                            </button>
                             {error && <p className="text-red-500">{error}</p>}
                         </div>
 

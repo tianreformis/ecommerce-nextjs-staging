@@ -1,3 +1,5 @@
+import Button from "@/components/ui/button";
+import Input from "@/components/ui/input";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { FormEvent, useState } from "react";
@@ -32,6 +34,7 @@ const RegisterView = () => {
             setIsLoading(false);
             setError('Email is already registered');
         }
+
     }
 
     return (
@@ -40,44 +43,37 @@ const RegisterView = () => {
 
             {error && <p className="text-red-500">{error}</p>}
             <form onSubmit={handleSubmit}>
-                <div className="flex flex-col shadow-lg rounded-md p-5 bg-slate-100">
-                    <div className="my-2 flex flex-col">
-                        <label htmlFor="email">Email</label>
-                        <input type="email"
-                            id="email"
-                            name="email"
-                            placeholder="Enter your Email"
-                        />
-                    </div>
+                <div className="flex flex-col shadow-lg rounded-md p-5 bg-slate-100 gap-2">
+                    <Input
+                        name="email"
+                        label="Email"
+                        placeholder="Masukkan email anda..."
+                        type="email"
+                        required={true}
+                    />
+                    <Input
+                        name="fullname"
+                        label="Fullname"
+                        placeholder="Masukkan nama lengkap anda..."
+                        type="text" />
+                    <Input
+                        name="phone"
+                        label="Phone"
+                        placeholder="Masukkan nomor telepon anda..."
+                        type="tel" />
+                    <Input
+                        name="password"
+                        label="Password"
+                        placeholder="Masukkan password anda..."
+                        type="password" />
 
-                    <div className="my-2 flex flex-col">
-                        <label htmlFor="fullname">Fullname</label>
-                        <input type="text"
-                            id="fullname"
-                            name="fullname"
-                            placeholder="Enter your fullname"
-                        />
-                    </div>
+                    <Button
+                        type='submit'>
+                        {isLoading ? "Loading..." : "Register"}
 
-                    <div className="my-2 flex flex-col">
-                        <label htmlFor="phone">Phone</label>
-                        <input type="text"
-                            id="phone"
-                            name="phone"
-                            placeholder="Enter your phone"
-                        />
-                    </div>
-                    <div className="my-2 flex flex-col">
-                        <label htmlFor="passsword">Password</label>
-                        <input type="password"
-                            id="password"
-                            name="password"
-                            placeholder="Enter your password"
-                        />
-                    </div>
-                    <div className="my-2 flex flex-col">
-                        <button type="submit" className="bg-black text-white p-2 rounded-md">{isLoading ? "Loading...": "Register"}</button>
-                    </div>
+                    </Button>
+
+
                     <div className="text-sm">
                         Sudah Punya akun? <Link href="/auth/login">Login</Link>
                     </div>

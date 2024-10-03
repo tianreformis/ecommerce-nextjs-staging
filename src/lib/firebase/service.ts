@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unsafe-function-type */
 import { getFirestore, collection, getDoc, doc, getDocs, where, query, addDoc } from 'firebase/firestore'
 import app from './init'
 import bcrypt from 'bcryptjs';
@@ -20,6 +22,31 @@ export async function retrieveDataById(collectionName: string, id: string) {
     return data;
 }
 
+export async function retrieveDataByField(collectionName: string, field: string, value: string) {
+    const q = query(
+        collection(firestore, collectionName),
+        where(field, '==', value),
+    );
+    const snapshot = await getDocs(q);
+    const data = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+    }));
+
+    return data;
+}
+
+export async function addData(collectionName: string, data:any, callback: Function ) {
+    await addDoc(collection(firestore, collectionName), data)
+            .then(() => {
+                callback(true);
+            })
+            .catch((error) => {
+                callback(false);
+                console.log(error);
+            });
+}
+
 export default async function signUp(
     userData:
         {
@@ -32,15 +59,9 @@ export default async function signUp(
     // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
     callback: Function,
 ) {
-    const q = query(
-        collection(firestore, 'users'),
-        where('email', '==', userData.email),
-    );
-    const snapshot = await getDocs(q);
-    const data = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-    }));
+    const data = await retrieveDataByField('users', 'email', userData.email);
+
+
     if (data.length > 0) {
         callback(false);
     } else {
@@ -48,28 +69,17 @@ export default async function signUp(
             userData.role = 'member';
         }
         userData.password = await bcrypt.hash(userData.password, 10);
-        await addDoc(collection(firestore, 'users'), userData)
-            .then(() => {
-                callback(true);
-            })
-            .catch((error) => {
-                callback(false);
-                console.log(error);
-            });
+        addData('users', userData, (result:boolean) => {
+            callback(result)
+        })
     }
 
 }
 
+
+
 export async function signIn(email: string) {
-    const q = query(
-        collection(firestore, 'users'),
-        where('email', '==', email),
-    );
-    const snapshot = await getDocs(q);
-    const data = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-    }));
+    const data = await retrieveDataByField('users', 'email', email);
 
     if (data) {
         return data[0];
@@ -78,26 +88,22 @@ export async function signIn(email: string) {
     }
 }
 
-export async function LoginWithGoogle(data: any, callback: Function) {
-    const q = query(
-        collection(firestore, 'users'),
-        where('email', '==', data.email),
-    );
-    const snapshot = await getDocs(q);
-    const user = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-    }));
+
+export async function LoginWithGoogle(
+    data: { email: string, role?: string },
+    callback: Function,
+) {
+    const user = await retrieveDataByField('users', 'email', data.email);
 
     if (user.length > 0) {
         callback(user[0]);
     } else {
         data.role = 'member';
-        await addDoc(collection(firestore, 'users'), data).then(() => {
-            callback(data);
-        })
+        await addData('users', data, (result:boolean)=>{
+            if (result){
+                callback(data);
+            }
+        })        
     }
-    
-
 
 }
