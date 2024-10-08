@@ -1,8 +1,10 @@
 import Button from "@/components/ui/button";
 import Input from "@/components/ui/input";
+import  authServices  from "@/services/auth";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { FormEvent, useState } from "react";
+import { AxiosError } from "axios";
 
 const RegisterView = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -13,7 +15,7 @@ const RegisterView = () => {
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         setIsLoading(true);
-        setError('')
+        setError('');
         const form = event.target as HTMLFormElement;
         const data = {
             email: form.email.value,
@@ -21,18 +23,28 @@ const RegisterView = () => {
             phone: form.phone.value,
             password: form.password.value,
         };
-        const result = await fetch('/api/user/register', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data),
-        });
-
-        if (result.status === 200) {
-            form.reset();
-            push('/auth/login')
-        } else {
+        try {
+            const result = await authServices.registerAccount(data);
+            if (result.status === 200) {
+                form.reset();
+                push('/auth/login');
+            } else {
+                setError('An unexpected error occurred. Please try again.');
+            }
+        } catch (error) {
+            if (error instanceof AxiosError) {
+                if (error.response?.status === 404) {
+                    setError('Registration service is currently unavailable. Please try again later.');
+                } else if (error.response?.status === 409) {
+                    setError('Email is already registered');
+                } else {
+                    setError('An error occurred during registration. Please try again.');
+                }
+            } else {
+                setError('An unexpected error occurred. Please try again.');
+            }
+        } finally {
             setIsLoading(false);
-            setError('Email is already registered');
         }
 
     }

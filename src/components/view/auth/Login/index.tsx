@@ -74,7 +74,7 @@ const LoginView = () => {
                                 {isLoading ? "Loading..." : "Login With Google"}
                             </Button>
 
-                            {error && <p className="text-red-500">{error}</p>}
+                            {error && <p className="text-slate- bg-red-400 py-2 px-2  flex justify-center rounded-lg">{error}</p>}
                         </div>
 
                         <div className="flex items-center justify-center bg-gray-100 p-4">
