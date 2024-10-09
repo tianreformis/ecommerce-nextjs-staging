@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import AuthLayout from "@/components/layouts/AuthLayout";
 import Button from "@/components/ui/button";
 import Input from "@/components/ui/input";
 import { signIn } from "next-auth/react";
@@ -44,6 +45,7 @@ const LoginView = () => {
 
 
     return (
+ 
         <div className="flex flex-row h-screen w-screen justify-center items-center">
             <div className="bg-white py-6 sm:py-8 lg:py-12">
                 <div className="mx-auto max-w-screen-2xl px-4 md:px-8">
