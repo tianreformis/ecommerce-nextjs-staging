@@ -1,10 +1,10 @@
 import Button from "@/components/ui/button";
 import Input from "@/components/ui/input";
 import  authServices  from "@/services/auth";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { FormEvent, useState } from "react";
 import { AxiosError } from "axios";
+import AuthLayout from "@/components/layouts/AuthLayout";
 
 const RegisterView = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -50,12 +50,16 @@ const RegisterView = () => {
     }
 
     return (
-        <div className="flex flex-col h-screen justify-center items-center">
-            <h1>Register</h1>
-
-            {error && <p className="text-red-500">{error}</p>}
-            <form onSubmit={handleSubmit}>
-                <div className="flex flex-col shadow-lg rounded-md p-5 bg-slate-100 gap-2">
+        <AuthLayout
+            title="Register"
+            submitForms={handleSubmit}
+            error={error}
+            notificationText="Punya Akun?"
+            linkUrl="/auth/login"
+            linkTitle="Login"
+        
+        >
+            <div className="flex flex-col gap-4 p-4 md:p-8">
                     <Input
                         name="email"
                         label="Email"
@@ -82,18 +86,18 @@ const RegisterView = () => {
                     <Button
                         type='submit'>
                         {isLoading ? "Loading..." : "Register"}
-
                     </Button>
-
-
-                    <div className="text-sm">
-                        Sudah Punya akun? <Link href="/auth/login">Login</Link>
-                    </div>
-
                 </div>
+        </AuthLayout>
+        // <div className="flex flex-col h-screen justify-center items-center">
+        //     <h1>Register</h1>
 
-            </form>
-        </div>
+        //     {error && <p className="text-red-500">{error}</p>}
+        //     <form onSubmit={handleSubmit}>
+                
+
+        //     </form>
+        // </div>
     )
 }
 
