@@ -1,8 +1,11 @@
+import { NavbarHome } from "@/components/ui/navbar";
 import "@/styles/globals.css";
 import { SessionProvider } from "next-auth/react";
 import type { AppProps } from "next/app";
 import {Montserrat } from "next/font/google"
+import { useRouter } from "next/router";
 
+const disableNavbar = ['auth','admin'];
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -13,9 +16,11 @@ const montserrat = Montserrat({
 export default function App({ Component,
   pageProps: { session, ...pageProps },
 }: AppProps) {
+  const {pathname}=useRouter();
   return (
     <SessionProvider session={session}>
       <div className={montserrat.className}>
+      {!disableNavbar.includes(pathname.split('/')[1])&& <NavbarHome />}
         <Component {...pageProps} />
       </div>
     </SessionProvider>
