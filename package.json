@@ -20,6 +20,8 @@
     "firebase": "^10.7.0",
     "headlessui": "^0.0.0",
     "heroicons": "^2.1.5",
+    "lucide": "^0.453.0",
+    "lucide-react": "^0.453.0",
     "mock-aws-s3": "^4.0.2",
     "net": "^1.0.2",
     "next": "14.2.13",
