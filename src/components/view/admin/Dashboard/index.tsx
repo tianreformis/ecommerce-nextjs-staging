@@ -1,6 +1,6 @@
 import AdminLayout from "@/components/layouts/AdminLayout";
 
-const AdminUsersDashboard = () => {
+const DashboardAdminView = () => {
     return (
         <AdminLayout>
             <div>
@@ -10,4 +10,4 @@ const AdminUsersDashboard = () => {
     )
 }
 
-export default AdminUsersDashboard;
+export default DashboardAdminView;
