@@ -1,5 +1,5 @@
 import Sidebar from "@/components/ui/sidebar";
-import { LayoutDashboard, Archive, Users2, DownloadCloud } from 'lucide-react';
+import { LayoutDashboard, Archive, Users2 } from 'lucide-react';
 
 
 
@@ -26,9 +26,10 @@ type PropsTypes = {
 const AdminLayout = (props: PropsTypes) => {
     const { children, } = props;
     return (
-        <div className="">
+        <div className="flex">
             <Sidebar lists={listSidebarItems} />
-            {children}
+            <div className="py-4 px-2">{children}
+                </div>
         </div>
     )
 
