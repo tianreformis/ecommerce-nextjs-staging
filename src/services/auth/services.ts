@@ -10,7 +10,7 @@ export default async function signUp(
             password: string,
             phone: string,
             role?: string,
-            created_at?:Date;
+            created_at?: Date;
             updated_at?: Date;
         },
     // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
@@ -28,8 +28,8 @@ export default async function signUp(
         userData.password = await bcrypt.hash(userData.password, 10);
         userData.created_at = new Date();
         userData.updated_at = new Date();
-        
-        addData('users', userData, (result:boolean) => {
+
+        addData('users', userData, (result: boolean) => {
             callback(result)
         })
     }
@@ -50,7 +50,14 @@ export async function signIn(email: string) {
 
 
 export async function LoginWithGoogle(
-    data: { email: string, role?: string },
+    data: {
+        email: string, 
+        role?: string,
+        password?:string,
+        created_at:Date,
+        updated_at:Date,
+
+    },
     callback: Function,
 ) {
     const user = await retrieveDataByField('users', 'email', data.email);
@@ -59,11 +66,14 @@ export async function LoginWithGoogle(
         callback(user[0]);
     } else {
         data.role = 'member';
-        await addData('users', data, (result:boolean)=>{
-            if (result){
+        data.created_at = new Date();
+        data.updated_at = new Date();
+        data.password='';
+        await addData('users', data, (result: boolean) => {
+            if (result) {
                 callback(data);
             }
-        })        
+        })
     }
 
 }

@@ -1,14 +1,13 @@
 import AdminLayout from "@/components/layouts/AdminLayout";
 
-const AdminProductDashboard = () => {
+const DashboardAdminView = () => {
     return (
         <AdminLayout>
-            <div>
+            <div className="text-xl font-bold">
                 Admin Products Dashboard
             </div>
         </AdminLayout>
     )
 }
 
-export default AdminProductDashboard;
-
+export default DashboardAdminView;
