@@ -26,9 +26,6 @@ const AdminLayout = (props: PropsTypes) => {
             {children}
         </div>
     )
-
-
-
 }
 
 
