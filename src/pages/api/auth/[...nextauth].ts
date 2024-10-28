@@ -66,8 +66,7 @@ const authOptions: NextAuthOptions = {
                         token.email = data.email;;
                         token.fullname = data.fullname;
                         token.role = data.role;
-                    }
-                )
+                    });
             }
 
 
