@@ -109,15 +109,14 @@ const AdminUsersView = (props: PropTypes) => {
                     </table>
                 </div>
 
-
-
             </AdminLayout>
             {
                 Object.keys(modalUpdateUser).length && (
                     <Modal onClose={() => setModalUpdateUser({})}>
-                        <div className="p-4">
+                        <div className="p-8">
                             <h1 className="text-2xl font-bold ">Update Users</h1>
                             {modalUpdateUser.email}
+                            <p className="py-10 italic">Tekan dimana  saja untuk membatalkan</p>
                         </div>
 
                     </Modal>
