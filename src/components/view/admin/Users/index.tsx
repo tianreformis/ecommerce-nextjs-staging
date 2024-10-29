@@ -116,7 +116,7 @@ const AdminUsersView = (props: PropTypes) => {
                         <div className="p-8">
                             <h1 className="text-2xl font-bold ">Update Users</h1>
                             {modalUpdateUser.email}
-                            <p className="py-10 italic">Tekan dimana  saja untuk membatalkan</p>
+                            <p className="py-10 italic text-green-200 bg-green-600">Tekan diluar kotak ini untuk membatalkan</p>
                         </div>
 
                     </Modal>

@@ -26,7 +26,7 @@ return (
     <div className=" fixed top-0 w-[100vw] h-[100vh] z-[1000] bg-black bg-opacity-50 flex align-middle justify-center items-center">
         <div className="bg-white h-[60vh] min-w-[40vw] rounded-md" ref={ref}>
             {children}
-            
+         
         </div>
 
 
