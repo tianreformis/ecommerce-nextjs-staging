@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { retrieveData } from '@/lib/firebase/service';
+import { retrieveData, updateData } from '@/lib/firebase/service';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(
@@ -20,6 +20,28 @@ export default async function handler(
             mesagge: 'success',
             data,
         });
+    }
+    else if (req.method === 'PUT') {
+        const { id, data } = req.body;
+        await updateData('users', id, data, (result: boolean) => {
+            if (result) {
+                res.status(200).json({
+                    status: true,
+                    statuscode: 200,
+                    mesagge: 'success',
+                });
+            }
+            else {
+                res.status(400).json({
+                    status: false,
+                    statuscode: 400,
+                    mesagge: 'failed',
+                });
+            }
+
+
+
+        })
     }
 }
 

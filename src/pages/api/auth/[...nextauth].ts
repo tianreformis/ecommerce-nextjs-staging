@@ -58,14 +58,18 @@ const authOptions: NextAuthOptions = {
                     fullname: user.name,
                     email: user.email,
                     type: 'google',
+                    created_at: user.created_at,
+                    updated_at: user.updated_at
                 };
 
                 await LoginWithGoogle(
                     data,
                     (data: any) => {
-                        token.email = data.email;;
+                        token.email = data.email;
                         token.fullname = data.fullname;
                         token.role = data.role;
+                        token.created_at = data.created_at;
+                        token.updated_at = data.updated_at;
                     });
             }
 

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unsafe-function-type */
-import { getFirestore, collection, getDoc, doc, getDocs, where, query, addDoc } from 'firebase/firestore'
+import { getFirestore, collection, getDoc, doc, getDocs, where, query, addDoc,updateDoc } from 'firebase/firestore'
 import app from './init'
 
 
@@ -47,3 +47,18 @@ export async function addData(collectionName: string, data:any, callback: Functi
             });
 }
 
+export async function updateData(
+    collectionName: string,
+    id:string, 
+    data:any,
+    callback: Function,
+){
+    const docRef = doc(firestore, collectionName,id);
+    await updateDoc(docRef, data)
+    .then(() =>{
+        callback(true);
+    })
+    .catch(()=>{
+        callback(false);
+    });
+}
