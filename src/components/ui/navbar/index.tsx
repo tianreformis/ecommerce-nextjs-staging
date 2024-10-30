@@ -1,9 +1,14 @@
 import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useState } from "react";
+import Button from "../button";
+import { useRouter } from "next/router";
+
 export const NavbarHome = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { data } = useSession();
+  const router = useRouter();
+
   return (
     <div className="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
       <div className="relative flex items-center justify-between">
@@ -82,6 +87,11 @@ export const NavbarHome = () => {
             >
               {data ? 'Logout' : "Login"}
             </button>
+          </li>
+          <li>
+            <Button type="button" onClick={() => router.push('/admin')}>
+              Dashboard
+            </Button>
           </li>
         </ul>
         <div className="lg:hidden">

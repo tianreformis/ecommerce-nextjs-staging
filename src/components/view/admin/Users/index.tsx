@@ -29,7 +29,6 @@ const AdminUsersView = (props: PropTypes) => {
                         <thead className="bg-gray-50">
                             <tr>
                                 <th scope="col" className="px-6 py-4 font-medium text-gray-900">No</th>
-
                                 <th scope="col" className="px-6 py-4 font-medium text-gray-900">Nama Lengkap</th>
                                 <th scope="col" className="px-6 py-4 font-medium text-gray-900">Role</th>
                                 <th scope="col" className="px-6 py-4 font-medium text-gray-900">Email</th>
@@ -90,11 +89,14 @@ const AdminUsersView = (props: PropTypes) => {
                                             <Button
                                                 type="button"
                                                 onClick={() => setModalUpdateUser(user)}
+                                                variant="secondary"
 
                                             >
                                                 <Edit />
                                             </Button>
-                                            <Button type="button">
+                                            <Button type="button"
+                                            variant="danger"
+                                            >
                                                 <LucideDelete />
                                             </Button>
 
@@ -116,7 +118,7 @@ const AdminUsersView = (props: PropTypes) => {
                         <div className="p-8">
                             <h1 className="text-2xl font-bold ">Update Users</h1>
                             {modalUpdateUser.email}
-                            <p className="py-10 italic text-green-200 bg-green-600">Tekan diluar kotak ini untuk membatalkan</p>
+                            <p className="py-2 italic text-black bg-green-200 mt-12">Tekan diluar kotak ini untuk membatalkan</p>
                         </div>
 
                     </Modal>

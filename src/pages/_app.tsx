@@ -2,28 +2,18 @@ import { NavbarHome } from "@/components/ui/navbar";
 import "@/styles/globals.css";
 import { SessionProvider } from "next-auth/react";
 import type { AppProps } from "next/app";
-import {Montserrat, Poppins, Lato as Raleway } from "next/font/google"
+import {Poppins as Poppins } from "next/font/google"
 import { useRouter } from "next/router";
 
 const disableNavbar = ['auth', 'admin','404'];
 
-const montserrat = Montserrat({
+
+const raleway = Poppins({
   subsets: ["latin"],
   display: "swap",
   weight: ["300", "400"],
 });
 
-const raleway = Raleway({
-  subsets: ["latin"],
-  display: "swap",
-  weight: ["300", "400"],
-});
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  display: "swap",
-  weight: ["300", "400"],
-});
 
 export default function App({ Component,
   pageProps: { session, ...pageProps },
