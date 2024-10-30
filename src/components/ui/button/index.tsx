@@ -29,4 +29,4 @@ const Button = (props: PropsTypes) => {
     )
 }
 
-export default Button
+export default Button;

@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import AdminLayout from "@/components/layouts/AdminLayout";
 import Button from "@/components/ui/button";
-import Modal from "@/components/ui/Modal";
 import { Edit, LucideDelete } from "lucide-react";
 import Head from "next/head";
 import { useState } from "react";
+import ModalUpdateUser from "./ModalUpdateUser";
 
 
 type PropTypes = {
@@ -13,7 +13,7 @@ type PropTypes = {
 
 const AdminUsersView = (props: PropTypes) => {
     const { users } = props;
-    const [modalUpdateUser, setModalUpdateUser] = useState<any>("");
+    const [updatedUser, setUpdatedUser] = useState<any>({});
     return (
         <>
             <AdminLayout>
@@ -88,7 +88,7 @@ const AdminUsersView = (props: PropTypes) => {
                                         <div className="flex justify-end gap-4">
                                             <Button
                                                 type="button"
-                                                onClick={() => setModalUpdateUser(user)}
+                                                onClick={() => setUpdatedUser(user)}
                                                 variant="secondary"
 
                                             >
@@ -113,15 +113,11 @@ const AdminUsersView = (props: PropTypes) => {
 
             </AdminLayout>
             {
-                Object.keys(modalUpdateUser).length && (
-                    <Modal onClose={() => setModalUpdateUser({})}>
-                        <div className="p-8">
-                            <h1 className="text-2xl font-bold ">Update Users</h1>
-                            {modalUpdateUser.email}
-                            <p className="py-2 italic text-black bg-green-200 mt-12">Tekan diluar kotak ini untuk membatalkan</p>
-                        </div>
-
-                    </Modal>
+                Object.keys(updatedUser).length && (
+                    <ModalUpdateUser 
+                        modalUpdateUser={updatedUser}
+                        setModalUpdateUser={setUpdatedUser}                    
+                    />
                 )
             }
         </>
