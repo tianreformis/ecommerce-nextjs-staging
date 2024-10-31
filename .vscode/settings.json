@@ -1,0 +1,14 @@
+{
+    "editor.fontSize":22,
+    "editor.fontFamily":"Fira Code",
+    "editor.theme":"VS-dark",
+    "editor.wordWrap":"on",
+    "editor.tabSize":2,
+    "editor.autoIndent":"full",
+    "editor.insertSpaces":true,
+    "editor.cursorStyle":"line-thin",
+    "terminal.integrated.fontSize":18,
+    "terminal.integrated.fontFamily":"Fira Code",
+    "terminal.integrated.cursorBlink":true,
+    "window.zoomLevel": -1
+}
