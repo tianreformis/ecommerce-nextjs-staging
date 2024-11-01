@@ -81,11 +81,11 @@ const AdminUsersView = (props: PropTypes) => {
                                             {user.role}
                                         </span>
                                     </td>
-                                    <td className="px-6 py-4 text-black">{user.email}</td>
+                                    <td className="px-6 py-4 text-black hover:underline cursor-text">{user.email}</td>
                                     <td className="px-6 py-4">
                                         <div className="flex gap-2">
                                             <span
-                                                className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-1 text-xs font-semibold text-blue-600"
+                                                className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-1 text-xs font-semibold text-blue-600 hover:font-bold"
                                             >
                                                 <Link href={user.phone != "" ? `https://wa.me/62${user.phone}` : `https://#`}>
                                                     {user.phone != "" ? user.phone : "Tidak ada Nomor"}
