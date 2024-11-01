@@ -32,14 +32,14 @@ const AdminUsersView = (props: PropTypes) => {
 
                 <div className="overflow-hidden rounded-lg border border-gray-200 shadow-md m-5">
                     <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
-                        <thead className="bg-gray-50">
-                            <tr>
-                                <th scope="col" className="px-6 py-4 font-medium text-gray-900">No</th>
-                                <th scope="col" className="px-6 py-4 font-medium text-gray-900">Nama Lengkap</th>
-                                <th scope="col" className="px-6 py-4 font-medium text-gray-900">Role</th>
-                                <th scope="col" className="px-6 py-4 font-medium text-gray-900">Email</th>
-                                <th scope="col" className="px-6 py-4 font-medium text-gray-900">Nomor</th>
-                                <th scope="col" className="px-6 py-4 font-medium text-gray-900">Aksi</th>
+                        <thead className="bg-gray-50 font-bold">
+                            <tr className="font-bold">
+                                <th scope="col" className="px-6 py-4 text-gray-900">No</th>
+                                <th scope="col" className="px-6 py-4 text-gray-900">Nama Lengkap</th>
+                                <th scope="col" className="px-6 py-4  text-gray-900">Role</th>
+                                <th scope="col" className="px-6 py-4  text-gray-900">Email</th>
+                                <th scope="col" className="px-6 py-4  text-gray-900">Nomor</th>
+                                <th scope="col" className="px-6 py-4  text-gray-900">Aksi</th>
 
                             </tr>
                         </thead>
