@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { retrieveData, updateData } from '@/lib/firebase/service';
+import { deleteData, retrieveData, updateData } from '@/lib/firebase/service';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(
@@ -41,6 +41,25 @@ export default async function handler(
 
 
 
+        })
+    }
+    else if (req.method === 'DELETE') {
+        const { id } :any = req.query;
+        await deleteData('users', id, (result: boolean) => {
+            if (result) {
+                res.status(200).json({
+                    status: true,
+                    statuscode: 200,
+                    mesagge: 'success',
+                });
+            }
+            else {
+                res.status(400).json({
+                    status: false,
+                    statuscode: 400,
+                    mesagge: 'failed',
+                });
+            }
         })
     }
 }
