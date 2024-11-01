@@ -5,6 +5,8 @@ import { Edit, LucideDelete } from "lucide-react";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import ModalUpdateUser from "./ModalUpdateUser";
+import Link from "next/link";
+
 
 
 type PropTypes = {
@@ -85,7 +87,9 @@ const AdminUsersView = (props: PropTypes) => {
                                             <span
                                                 className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-1 text-xs font-semibold text-blue-600 hover:font-bold"
                                             >
-                                                {user.phone != "" ? user.phone : "Kosong"}
+                                                <Link href={user.phone != "" ? `https://wa.me/62${user.phone}` : `https://#`}>
+                                                    {user.phone != "" ? user.phone : "Tidak ada Nomor"}
+                                                </Link>
                                             </span>
 
                                         </div>
