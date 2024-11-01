@@ -7,7 +7,7 @@ import userServices from "@/services/user";
 import { FormEvent, useState } from "react";
 
 const ModalUpdateUser = (props: any) => {
-    const { updatedUser, setUpdatedUser } = props;
+    const { updatedUser, setUpdatedUser, setUsersData } = props;
     const [isLoading, setIsLoading] = useState(false);
     const handleUpdateUser = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -16,12 +16,18 @@ const ModalUpdateUser = (props: any) => {
         const form: any = event.target as HTMLFormElement;
         const data = {
             role: form.role.value,
+            phone: form.phone.value,
+            fullname: form.fullname.value,
+            email: form.email.value,
         };
 
         const result = await userServices.updatedUser(updatedUser.id, data);
         if (result.status === 200) {
-            setUpdatedUser({});
             setIsLoading(false);
+            setUpdatedUser({});            
+            const { data } = await userServices.getAllUsers();
+            setUsersData(data.data);
+
         }
         else {
             setIsLoading(false);
@@ -42,6 +48,7 @@ const ModalUpdateUser = (props: any) => {
                         type="email"
                         defaultValue={updatedUser.email}
                         disabled
+
                     />
                     <Input
                         name="fullname"
@@ -55,8 +62,8 @@ const ModalUpdateUser = (props: any) => {
                         label="Phone"
                         defaultValue={updatedUser.phone}
                         type="tel"
-                        
-                    />                    
+
+                    />
                     <Select
 
                         label="Role"

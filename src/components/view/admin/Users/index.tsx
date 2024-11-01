@@ -3,7 +3,7 @@ import AdminLayout from "@/components/layouts/AdminLayout";
 import Button from "@/components/ui/button";
 import { Edit, LucideDelete } from "lucide-react";
 import Head from "next/head";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ModalUpdateUser from "./ModalUpdateUser";
 
 
@@ -14,6 +14,12 @@ type PropTypes = {
 const AdminUsersView = (props: PropTypes) => {
     const { users } = props;
     const [updatedUser, setUpdatedUser] = useState<any>({});
+    const [usersData, setUsersData] = useState<any>([]);
+
+    useEffect(() => {
+        setUsersData(users);
+    }, [users]);
+
     return (
         <>
             <AdminLayout>
@@ -39,7 +45,7 @@ const AdminUsersView = (props: PropTypes) => {
                         </thead>
 
                         <tbody className="divide-y divide-gray-100 border-t border-gray-100">
-                            {users.map((user: any, index: number) => (
+                            {usersData.map((user: any, index: number) => (
                                 <tr className="hover:bg-gray-50 " key={user.id}>
                                     <th className="flex gap-3 px-6 py-4 font-normal text-gray-900">
                                         <div className="relative h-10 w-10">
@@ -73,7 +79,7 @@ const AdminUsersView = (props: PropTypes) => {
                                             {user.role}
                                         </span>
                                     </td>
-                                    <td className="px-6 py-4">{user.email}</td>
+                                    <td className="px-6 py-4 text-black">{user.email}</td>
                                     <td className="px-6 py-4">
                                         <div className="flex gap-2">
                                             <span
@@ -90,12 +96,11 @@ const AdminUsersView = (props: PropTypes) => {
                                                 type="button"
                                                 onClick={() => setUpdatedUser(user)}
                                                 variant="secondary"
-
                                             >
                                                 <Edit />
                                             </Button>
                                             <Button type="button"
-                                            variant="danger"
+                                                variant="danger"
                                             >
                                                 <LucideDelete />
                                             </Button>
@@ -106,7 +111,6 @@ const AdminUsersView = (props: PropTypes) => {
 
                             ))
                             }
-
                         </tbody>
                     </table>
                 </div>
@@ -114,9 +118,11 @@ const AdminUsersView = (props: PropTypes) => {
             </AdminLayout>
             {
                 Object.keys(updatedUser).length && (
-                    <ModalUpdateUser 
+                    <ModalUpdateUser
                         updatedUser={updatedUser}
-                        setUpdatedUser={setUpdatedUser}                    
+                        setUpdatedUser={setUpdatedUser}
+                        setUsersData={setUsersData}
+
                     />
                 )
             }
