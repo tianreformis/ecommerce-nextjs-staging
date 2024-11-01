@@ -7,5 +7,4 @@ const userServices = {
         instance.put('/api/user',{id,data}),
 }
 
-export default userServices
- 
+export default userServices; 

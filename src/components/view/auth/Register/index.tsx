@@ -47,7 +47,7 @@ const RegisterView = () => {
             setIsLoading(false);
         }
 
-    }
+    };
 
     return (
         <AuthLayout

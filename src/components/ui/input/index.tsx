@@ -5,12 +5,14 @@ type PropsTypes = {
     name:string;
     type?: string;
     placeholder?: string;
-    required?: boolean
+    required?: boolean;
+    defaultValue?: string;
+    disabled?: boolean;
 }
 
 
 const Input = (props:PropsTypes) => {
-    const {label, name,  type, placeholder,required} = props;
+    const {label, name,  type, placeholder,required,defaultValue,disabled} = props;
     return (
         
             <div>
@@ -22,6 +24,8 @@ const Input = (props:PropsTypes) => {
                     type={type}
                     placeholder={placeholder}
                     required={required}
+                    defaultValue={defaultValue}
+                    disabled={disabled}
                 />
             
         </div>

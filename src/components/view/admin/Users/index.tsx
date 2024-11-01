@@ -115,8 +115,8 @@ const AdminUsersView = (props: PropTypes) => {
             {
                 Object.keys(updatedUser).length && (
                     <ModalUpdateUser 
-                        modalUpdateUser={updatedUser}
-                        setModalUpdateUser={setUpdatedUser}                    
+                        updatedUser={updatedUser}
+                        setUpdatedUser={setUpdatedUser}                    
                     />
                 )
             }
