@@ -44,8 +44,10 @@ export default async function handler(
         })
     }
     else if (req.method === 'DELETE') {
-        const { id } :any = req.query;
-        await deleteData('users', id, (result: boolean) => {
+        const { user } : any = req.query;
+        console.log(req.body);
+        
+        await deleteData('users', user[1], (result: boolean) => {
             if (result) {
                 res.status(200).json({
                     status: true,

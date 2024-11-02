@@ -5,6 +5,8 @@ import { Edit, LucideDelete } from "lucide-react";
 import { useEffect, useState } from "react";
 import ModalUpdateUser from "./ModalUpdateUser";
 import Link from "next/link";
+import ModalDeletedUser from "./ModalDeletedUser";
+import userServices from "@/services/user";
 
 
 
@@ -16,6 +18,7 @@ const AdminUsersView = (props: PropTypes) => {
     const { users } = props;
     const [updatedUser, setUpdatedUser] = useState<any>({});
     const [usersData, setUsersData] = useState<any>([]);
+    const [deletedUser, setDeletedUser]= useState<any>({});
 
     useEffect(() => {
         setUsersData(users);
@@ -102,6 +105,8 @@ const AdminUsersView = (props: PropTypes) => {
                                             </Button>
                                             <Button type="button"
                                                 variant="danger"
+                                                // onClick={() => setDeletedUser(user)}
+                                                onClick={()=> userServices.deleteUser(user)}
                                             >
                                                 <LucideDelete />
                                             </Button>
@@ -124,6 +129,15 @@ const AdminUsersView = (props: PropTypes) => {
                         setUpdatedUser={setUpdatedUser}
                         setUsersData={setUsersData}
 
+                    />
+                )
+            }
+            {
+                Object.keys(deletedUser).length && (
+                    <ModalDeletedUser
+                     deletedUser={deletedUser}
+                     setDeletedUser={setDeletedUser}
+                        
                     />
                 )
             }
