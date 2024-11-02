@@ -2,7 +2,6 @@
 import AdminLayout from "@/components/layouts/AdminLayout";
 import Button from "@/components/ui/button";
 import { Edit, LucideDelete } from "lucide-react";
-import Head from "next/head";
 import { useEffect, useState } from "react";
 import ModalUpdateUser from "./ModalUpdateUser";
 import Link from "next/link";
@@ -24,13 +23,11 @@ const AdminUsersView = (props: PropTypes) => {
 
     return (
         <>
-            <AdminLayout>
-                <Head>
-                    <title>Admin | Users Management </title>
-                </Head>
-                <div className="text-xl font-bold px-5">
-                    Admin Users Dashboard
-                </div>
+            <AdminLayout
+                dashboardHeaderTitle="Manajemen Pengguna"
+                pageTitle="User Management"
+            >
+
 
                 <div className="overflow-hidden rounded-lg border border-gray-200 shadow-md m-5">
                     <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">

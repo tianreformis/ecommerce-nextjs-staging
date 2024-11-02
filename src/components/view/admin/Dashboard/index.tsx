@@ -2,9 +2,12 @@ import AdminLayout from "@/components/layouts/AdminLayout";
 
 const DashboardAdminView = () => {
     return (
-        <AdminLayout>
+        <AdminLayout
+            pageTitle="Dashboard"
+            dashboardHeaderTitle="Dashboard Admin"
+        >
             <div className="text-xl font-bold">
-                Admin Products Dashboard
+        
             </div>
         </AdminLayout>
     )

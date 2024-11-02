@@ -1,6 +1,6 @@
 import Sidebar from "@/components/ui/sidebar";
 import { LayoutDashboard, Archive, Users2 } from 'lucide-react';
-
+import Head from "next/head";
 
 
 const listSidebarItems = [
@@ -22,14 +22,26 @@ const listSidebarItems = [
 ]
 type PropsTypes = {
     children: React.ReactNode,
+    pageTitle: string,
+    dashboardHeaderTitle: string,
+
+
 }
 const AdminLayout = (props: PropsTypes) => {
-    const { children, } = props;
+    const { children, pageTitle, dashboardHeaderTitle } = props;
     return (
         <div className="flex">
             <Sidebar lists={listSidebarItems} />
-            <div className="py-4 px-2">{children}
+            <Head>
+                <title>Admin | {pageTitle} </title>
+            </Head>
+
+            <div className="py-4 px-2">
+                <div className="text-xl font-bold px-5">
+                    {dashboardHeaderTitle}
                 </div>
+                {children}
+            </div>
         </div>
     )
 }
