@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import ModalUpdateUser from "./ModalUpdateUser";
 import Link from "next/link";
 import ModalDeletedUser from "./ModalDeletedUser";
-import userServices from "@/services/user";
+// import userServices from "@/services/user";
 
 
 
@@ -105,8 +105,8 @@ const AdminUsersView = (props: PropTypes) => {
                                             </Button>
                                             <Button type="button"
                                                 variant="danger"
-                                                // onClick={() => setDeletedUser(user)}
-                                                onClick={()=> userServices.deleteUser(user)}
+                                                onClick={() => setDeletedUser(user)}
+                                                // onClick={()=> userServices.deleteUser(user.id)}
                                             >
                                                 <LucideDelete />
                                             </Button>
@@ -137,7 +137,7 @@ const AdminUsersView = (props: PropTypes) => {
                     <ModalDeletedUser
                      deletedUser={deletedUser}
                      setDeletedUser={setDeletedUser}
-                        
+                     setUsersData={setUsersData}                        
                     />
                 )
             }

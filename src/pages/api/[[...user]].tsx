@@ -44,9 +44,8 @@ export default async function handler(
         })
     }
     else if (req.method === 'DELETE') {
-        const { user } : any = req.query;
-        console.log(req.body);
-        
+        const { user } : any = req.query;    
+        console.log(user);           
         await deleteData('users', user[1], (result: boolean) => {
             if (result) {
                 res.status(200).json({
@@ -64,5 +63,6 @@ export default async function handler(
             }
         })
     }
+    
 }
 
