@@ -7,7 +7,7 @@ const AdminProductDashboard = () => {
         dashboardHeaderTitle="Admin Product Management"
         >
             <div>
-                Admin Products Dashboard
+                
             </div>
         </AdminLayout>
     )

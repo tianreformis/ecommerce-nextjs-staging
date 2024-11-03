@@ -1,4 +1,4 @@
-import Sidebar from "@/components/ui/sidebar";
+import Sidebar from "@/components/ui/Sidebar";
 import { LayoutDashboard, Archive, Users2 } from 'lucide-react';
 import Head from "next/head";
 

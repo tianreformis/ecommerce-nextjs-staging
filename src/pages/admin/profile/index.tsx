@@ -1,7 +1,7 @@
 const AdminProfileDashboard = () => {
     
     <div>
-        Admin Users Dashboard
+        
     </div>
 }
 
