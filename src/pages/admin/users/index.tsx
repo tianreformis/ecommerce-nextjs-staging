@@ -12,7 +12,7 @@ const AdminUsersPage = () => {
         getAllUsers();
         
     }, []);
-    console.log(users);
+    
     
     return (
        <AdminUsersView users={users}/>

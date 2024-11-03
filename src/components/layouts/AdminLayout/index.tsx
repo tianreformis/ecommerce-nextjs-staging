@@ -30,7 +30,7 @@ type PropsTypes = {
 const AdminLayout = (props: PropsTypes) => {
     const { children, pageTitle, dashboardHeaderTitle } = props;
     return (
-        <div className="flex">
+        <div className="flex flex-row">
             <Sidebar lists={listSidebarItems} />
             <Head>
                 <title>Admin | {pageTitle} </title>

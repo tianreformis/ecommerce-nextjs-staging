@@ -106,7 +106,7 @@ const AdminUsersView = (props: PropTypes) => {
                                             <Button type="button"
                                                 variant="danger"
                                                 onClick={() => setDeletedUser(user)}
-                                                // onClick={()=> userServices.deleteUser(user.id)}
+                                                // onClick={()=> userServices.deleteUser(u00ser.id)}
                                             >
                                                 <LucideDelete />
                                             </Button>
