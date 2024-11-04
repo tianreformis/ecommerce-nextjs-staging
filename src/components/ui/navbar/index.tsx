@@ -79,14 +79,14 @@ export const NavbarHome = () => {
             </Link>
           </li>
           <li>
-            <button
+            <Button
               onClick={() => data ? signOut() : signIn()}
-              className="bg-blue-600 inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
               aria-label="Login"
-              title="Login"
+              type="button"
+
             >
               {data ? 'Logout' : "Login"}
-            </button>
+            </Button>
           </li>
           <li>
             <Button type="button" onClick={() => router.push('/admin')}>
@@ -206,14 +206,19 @@ export const NavbarHome = () => {
                       </Link>
                     </li>
                     <li>
-                      <Link
-                        href="/"
-                        className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
-                        aria-label="Sign up"
-                        title="Sign up"
+                      <Button
+                        onClick={() => data ? signOut() : signIn()}
+                        aria-label="Login"
+                        type="button"
+
                       >
-                        Sign up
-                      </Link>
+                        {data ? 'Logout' : "Login"}
+                      </Button>
+                    </li>
+                    <li>
+                      <Button type="button" onClick={() => router.push('/admin')}>
+                        Dashboard
+                      </Button>
                     </li>
                   </ul>
                 </nav>
