@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { deleteData, retrieveData, updateData } from '@/lib/firebase/service';
+import jwt from 'jsonwebtoken';
 import type { NextApiRequest, NextApiResponse } from 'next';
+
 
 export default async function handler(
     req: NextApiRequest,
@@ -44,25 +46,27 @@ export default async function handler(
         })
     }
     else if (req.method === 'DELETE') {
-        const { user } : any = req.query;    
-        console.log(user);           
-        await deleteData('users', user[1], (result: boolean) => {
-            if (result) {
-                res.status(200).json({
-                    status: true,
-                    statuscode: 200,
-                    mesagge: 'success',
-                });
-            }
-            else {
-                res.status(400).json({
-                    status: false,
-                    statuscode: 400,
-                    mesagge: 'failed',
-                });
-            }
-        })
+        const { user }: any = req.query;
+        const token = req.headers.authorization?.split(' ')[1] || '';
+        jwt.verify(token, process.env.NEXTAUTH_SECRET || '');
+
+        // await deleteData('users', user[1], (result: boolean) => {
+        //     if (result) {
+        //         res.status(200).json({
+        //             status: true,
+        //             statuscode: 200,
+        //             mesagge: 'success',
+        //         });
+        //     }
+        //     else {
+        //         res.status(400).json({
+        //             status: false,
+        //             statuscode: 400,
+        //             mesagge: 'failed',
+        //         });
+        //     }
+        // })
     }
-    
+
 }
 
