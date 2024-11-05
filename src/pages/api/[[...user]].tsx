@@ -24,48 +24,75 @@ export default async function handler(
         });
     }
     else if (req.method === 'PUT') {
-        const { id, data } = req.body;
-        await updateData('users', id, data, (result: boolean) => {
-            if (result) {
-                res.status(200).json({
-                    status: true,
-                    statuscode: 200,
-                    mesagge: 'success',
-                });
+        const { data } = req.body;
+        const {user }:any =req.query;
+        const token = req.headers.authorization?.split(' ')[1] || ''; //membuat token untuk melindungi API
+        jwt.verify(token, process.env.NEXTAUTH_SECRET || '', async (err: any, decoded: any) => {
+            if (decoded && decoded.role === "admin") { //hanya user yang punya token dan role tertentu dapat hapus
+                await updateData('users', user[1], data, (result: boolean) => {
+                    if (result) {
+                        res.status(200).json({
+                            status: true,
+                            statuscode: 200,
+                            mesagge: 'success',
+                        });
+                    }
+                    else {
+                        res.status(400).json({
+                            status: false,
+                            statuscode: 400,
+                            mesagge: 'failed',
+                        });
+                    }
+        
+        
+        
+                })
+                
             }
             else {
-                res.status(400).json({
+                res.status(403).json({
                     status: false,
-                    statuscode: 400,
-                    mesagge: 'failed',
+                    statuscode: 403,
+                    mesagge: 'Access Denied',
                 });
             }
+        });
 
-
-
-        })
+        
     }
     else if (req.method === 'DELETE') {
         const { user }: any = req.query;
-        const token = req.headers.authorization?.split(' ')[1] || '';
-        jwt.verify(token, process.env.NEXTAUTH_SECRET || '');
+        const token = req.headers.authorization?.split(' ')[1] || ''; //membuat token untuk melindungi API
+        jwt.verify(token, process.env.NEXTAUTH_SECRET || '', async (err: any, decoded: any) => {
+            if (decoded && decoded.role === "admin") { //hanya user yang punya token dan role tertentu dapat hapus
+                await deleteData('users', user[1], (result: boolean) => {
+                    if (result) {
+                        res.status(200).json({
+                            status: true,
+                            statuscode: 200,
+                            mesagge: 'success',
+                        });
+                    }
+                    else {
+                        res.status(400).json({
+                            status: false,
+                            statuscode: 400,
+                            mesagge: 'failed',
+                        });
+                    }
+                })
+            }
+            else {
+                res.status(403).json({
+                    status: false,
+                    statuscode: 403,
+                    mesagge: 'Access Denied',
+                });
+            }
+        });
 
-        // await deleteData('users', user[1], (result: boolean) => {
-        //     if (result) {
-        //         res.status(200).json({
-        //             status: true,
-        //             statuscode: 200,
-        //             mesagge: 'success',
-        //         });
-        //     }
-        //     else {
-        //         res.status(400).json({
-        //             status: false,
-        //             statuscode: 400,
-        //             mesagge: 'failed',
-        //         });
-        //     }
-        // })
+
     }
 
 }
