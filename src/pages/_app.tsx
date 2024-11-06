@@ -5,7 +5,7 @@ import type { AppProps } from "next/app";
 import {Poppins as Poppins } from "next/font/google" 
 import { useRouter } from "next/router";
 
-const disableNavbar = ['auth', 'admin','404'];
+const disableNavbar = ['auth', 'admin','404','member'];
 
 
 const raleway = Poppins({
