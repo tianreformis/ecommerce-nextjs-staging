@@ -1,20 +1,27 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import ProfileMemberView from "@/components/view/member/profile";
 import userServices from "@/services/user";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 
-const OrdersMemberPage = () => {
-  const [profile, setProfile]= useState({});
-  const session:any = useSession();
+const ProfileMemberPage = () => {
+  const [profile, setProfile] = useState({});
+  const session: any = useSession();
+
+  console.log(session);
+
   useEffect(() => {
     const getAllUsers = async () => {
       const { data } = await userServices.getProfile(session.data?.accessToken);
       setProfile(data.data);
-    }
-  },[session]);
+    };
+
+    getAllUsers();
+  }, [session]);
+
   return (
     <ProfileMemberView profile={profile} />
   )
 }
 
-export default OrdersMemberPage;
+export default ProfileMemberPage;
