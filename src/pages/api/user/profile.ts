@@ -22,7 +22,8 @@ export default async function handler(
               data: profile,
             })
           }
+          else {}
         })
     }
   }
-}
+} 

@@ -22,6 +22,8 @@ export async function retrieveDataById(collectionName: string, id: string) {
     return data;
 }
 
+
+
 export async function retrieveDataByField(collectionName: string, field: string, value: string) {
     const q = query(
         collection(firestore, collectionName),

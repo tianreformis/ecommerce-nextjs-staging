@@ -9,17 +9,17 @@ export default async function handler(
             if (!status) {
                 res
                     .status(200)
-                    .json({ status: true, message: 'success' });
+                    .json({ status: true, message: 'Sukses' });
             } else {
                 res
                     .status(404)
-                    .json({ status: true, message: 'failed' });
+                    .json({ status: true, message: 'Gagal' });
             }
         });
     } else {
         res
             .status(405)
-            .json({ status: false, message: 'method not allowed' });
+            .json({ status: false, message: 'Tidak diinjinkan' });
     }
 
 
